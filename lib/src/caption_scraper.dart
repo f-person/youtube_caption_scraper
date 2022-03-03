@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
+import 'package:youtube_captions_scraper/src/subtitle_line.dart';
 
 import 'caption_track.dart';
 
@@ -41,5 +43,59 @@ class YouTubeCaptionScraper {
       for (final captionTrackJson in json['captionTracks'])
         CaptionTrack.fromJson(captionTrackJson)
     ];
+  }
+
+  Future<List<SubtitleLine>> getSubtitles(CaptionTrack captionTrack) async {
+    final response = await _httpClient.get(Uri.parse(captionTrack.baseUrl));
+    final lines = response.body
+        .replaceFirst('<?xml version="1.0" encoding="utf-8" ?><transcript>', '')
+        .replaceFirst('</transcript>', '')
+        .split('</text>')
+        .where((line) => line.trim().isNotEmpty)
+        .map(_convertRawLineToSubtitle);
+
+    return lines.toList();
+  }
+
+  SubtitleLine _convertRawLineToSubtitle(String line) {
+    final startRegex = RegExp(r'start="([\d.]+)"');
+    final durationRegex = RegExp(r'dur="([\d.]+)"');
+
+    final startString = startRegex.firstMatch(line)!.group(1)!;
+    final durationString = durationRegex.firstMatch(line)!.group(1)!;
+    final start = _parseDuration(startString);
+    final duration = _parseDuration(durationString);
+
+    final htmlText = line
+        .replaceAll(r'<text.+>', '')
+        .replaceAll(r'/&amp;/gi', '&')
+        .replaceAll(r'/<\/?[^>]+(>|$)/g', '');
+
+    final text = _stripHtmlTags(htmlText)!;
+
+    return SubtitleLine(
+      start: start,
+      duration: duration,
+      text: text,
+    );
+  }
+
+  Duration _parseDuration(String rawDuration) {
+    final parts = rawDuration.split('.');
+    final seconds = int.parse(parts[0]);
+    final milliseconds = parts.length < 2 ? 0 : int.parse(parts[1]);
+
+    return Duration(seconds: seconds, milliseconds: milliseconds);
+  }
+
+  String? _stripHtmlTags(String html) {
+    final document = parse(html);
+    final bodyText = document.body?.text;
+    if (bodyText == null) {
+      return null;
+    }
+    final strippedText = parse(bodyText).documentElement?.text;
+
+    return strippedText;
   }
 }
