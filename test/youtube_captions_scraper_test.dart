@@ -1,18 +1,18 @@
 import 'dart:io';
 
 import 'package:http/http.dart';
-import 'package:http/testing.dart';
 import 'package:test/test.dart';
 
 import 'package:youtube_captions_scraper/youtube_captions_scraper.dart';
 
+import 'mock_http_client.dart';
 import 'test_data.dart';
 
 void main() {
-  final mockClient = MockClient(
+  final mockClient = MockHttpClient(
     (request) async {
       if (request.url.toString() == pageUrl) {
-        return Response(await pageResponse(), 200, headers: {
+        return Response(pageResponse, 200, headers: {
           HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
         });
       } else {

@@ -1,5 +1,5 @@
-import 'package:http/http.dart' as http;
 import 'package:youtube_captions_scraper/src/subtitle_line.dart';
+import 'package:youtube_captions_scraper/src/youtube_caption_scraper_http_client.dart';
 
 import 'caption_track.dart';
 import 'youtube_caption_scraper_impl.dart';
@@ -23,7 +23,7 @@ import 'youtube_caption_scraper_impl.dart';
 abstract class YouTubeCaptionScraper {
   /// {@macro YouTubeCaptionScraperImpl}
   factory YouTubeCaptionScraper({
-    http.Client? httpClient,
+    YouTubeCaptionScraperHttpClient? httpClient,
   }) {
     return YouTubeCaptionScraperImpl(httpClient: httpClient);
   }

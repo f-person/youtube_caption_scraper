@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 import 'package:youtube_captions_scraper/src/exceptions.dart';
+import 'package:youtube_captions_scraper/src/youtube_caption_scraper_http_client.dart';
+import 'package:youtube_captions_scraper/src/youtube_caption_scraper_http_client_impl.dart';
 
 import 'caption_scraper.dart';
 import 'caption_track.dart';
@@ -17,12 +19,12 @@ class YouTubeCaptionScraperImpl implements YouTubeCaptionScraper {
   /// using a proxy or mocking the client for testing purposes.
   /// {@endtemplate}
   YouTubeCaptionScraperImpl({
-    http.Client? httpClient,
+    YouTubeCaptionScraperHttpClient? httpClient,
   }) {
-    _httpClient = httpClient ?? http.Client();
+    _httpClient = httpClient ?? YouTubeCaptionScraperHttpClientImpl();
   }
 
-  late final http.Client _httpClient;
+  late final YouTubeCaptionScraperHttpClient _httpClient;
 
   @override
   Future<List<CaptionTrack>> getCaptionTracks(String videoUrl) async {
