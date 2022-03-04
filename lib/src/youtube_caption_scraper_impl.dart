@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
+import 'package:youtube_captions_scraper/src/exceptions.dart';
 
 import 'caption_scraper.dart';
 import 'caption_track.dart';
@@ -26,27 +27,32 @@ class YouTubeCaptionScraperImpl implements YouTubeCaptionScraper {
   @override
   Future<List<CaptionTrack>> getCaptionTracks(String videoUrl) async {
     final response = await _httpClient.get(Uri.parse(videoUrl));
-    final data = response.body;
-
-    final hasCaptionTracks = data.contains('captionTracks');
-    if (!hasCaptionTracks) {
-      throw Exception('Could not find captions for video: $videoUrl');
+    if (response.statusCode == 404) {
+      throw const VideoNotFound();
     }
 
+    final data = response.body;
+    final hasCaptionTracks = data.contains('captionTracks');
+    if (!hasCaptionTracks) {
+      throw const CaptionTracksNotFound();
+    } else {
+      return _parseCaptionTracks(data);
+    }
+  }
+
+  List<CaptionTrack> _parseCaptionTracks(String responseBody) {
     final regex = RegExp(
       r'({"captionTracks":.*isTranslatable":(true|false)}])',
     );
-    final match = regex.firstMatch(data);
-    if (match == null) {
-      throw Exception('No matches found');
-    }
-    final matchedData = data.substring(match.start, match.end);
+    final match = regex.firstMatch(responseBody)!;
+    final matchedData = responseBody.substring(match.start, match.end);
     final json = jsonDecode('$matchedData}');
 
-    return [
-      for (final captionTrackJson in json['captionTracks'])
-        CaptionTrack.fromJson(captionTrackJson)
-    ];
+    final List captionTracks = json['captionTracks'];
+    return List.generate(
+      captionTracks.length,
+      (index) => CaptionTrack.fromJson(captionTracks[index]),
+    );
   }
 
   @override
@@ -66,8 +72,11 @@ class YouTubeCaptionScraperImpl implements YouTubeCaptionScraper {
     final startRegex = RegExp(r'start="([\d.]+)"');
     final durationRegex = RegExp(r'dur="([\d.]+)"');
 
+    /// Force unwrapping because [startString] and [durationString] should
+    /// always be there.
     final startString = startRegex.firstMatch(line)!.group(1)!;
     final durationString = durationRegex.firstMatch(line)!.group(1)!;
+
     final start = _parseDuration(startString);
     final duration = _parseDuration(durationString);
 
@@ -76,7 +85,7 @@ class YouTubeCaptionScraperImpl implements YouTubeCaptionScraper {
         .replaceAll(r'/&amp;/gi', '&')
         .replaceAll(r'/<\/?[^>]+(>|$)/g', '');
 
-    final text = _stripHtmlTags(htmlText)!;
+    final text = _stripHtmlTags(htmlText);
 
     return SubtitleLine(
       start: start,
@@ -93,13 +102,10 @@ class YouTubeCaptionScraperImpl implements YouTubeCaptionScraper {
     return Duration(seconds: seconds, milliseconds: milliseconds);
   }
 
-  String? _stripHtmlTags(String html) {
+  String _stripHtmlTags(String html) {
     final document = parse(html);
-    final bodyText = document.body?.text;
-    if (bodyText == null) {
-      return null;
-    }
-    final strippedText = parse(bodyText).documentElement?.text;
+    final bodyText = document.body!.text;
+    final strippedText = parse(bodyText).documentElement!.text;
 
     return strippedText;
   }
