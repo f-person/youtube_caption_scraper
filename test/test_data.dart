@@ -1,4 +1,20 @@
+import 'package:youtube_captions_scraper/youtube_captions_scraper.dart';
+
 const pageUrl = 'https://www.youtube.com/watch?v=4KXePjjdoF0';
+const expectedCaptionTracks = <CaptionTrack>[
+  CaptionTrack(
+    baseUrl:
+        'https://www.youtube.com/api/timedtext?v=4KXePjjdoF0\u0026asr_langs=de,en,es,fr,id,it,ja,ko,nl,pt,ru,tr,vi\u0026caps=asr\u0026exp=xctw\u0026xoaf=5\u0026hl=en\u0026ip=0.0.0.0\u0026ipbits=0\u0026expire=1644794905\u0026sparams=ip,ipbits,expire,v,asr_langs,caps,exp,xoaf\u0026signature=E368D32137273B67DCCDD8B21B5896FF72C2C537.EE4323D326616DAC1FE06D716D89D352928BBC8F\u0026key=yt8\u0026lang=en',
+    name: 'English',
+    languageCode: 'en',
+  ),
+  CaptionTrack(
+    baseUrl:
+        'https://www.youtube.com/api/timedtext?v=4KXePjjdoF0\u0026asr_langs=de,en,es,fr,id,it,ja,ko,nl,pt,ru,tr,vi\u0026caps=asr\u0026exp=xctw\u0026xoaf=5\u0026hl=en\u0026ip=0.0.0.0\u0026ipbits=0\u0026expire=1644794905\u0026sparams=ip,ipbits,expire,v,asr_langs,caps,exp,xoaf\u0026signature=E368D32137273B67DCCDD8B21B5896FF72C2C537.EE4323D326616DAC1FE06D716D89D352928BBC8F\u0026key=yt8\u0026kind=asr\u0026lang=en',
+    name: 'English (auto-generated)',
+    languageCode: 'en',
+  ),
+];
 const pageResponse = r'''
 <!DOCTYPE html><html style="font-size: 10px;font-family: Roboto, Arial, sans-serif;" lang="en" system-icons typography typography-spacing><head><script nonce="c5Q7qa2EwJz2YMX/FyzFGQ">var ytcfg={d:function(){return window.yt&&yt.config_||ytcfg.data_||(ytcfg.data_={})},get:function(k,o){return k in ytcfg.d()?ytcfg.d()[k]:o},set:function(){var a=arguments;if(a.length>1)ytcfg.d()[a[0]]=a[1];else for(var k in a[0])ytcfg.d()[k]=a[0][k]}};
 window.ytcfg.set('EMERGENCY_BASE_URL', '\/error_204?t\x3djserror\x26level\x3dERROR\x26client.name\x3d1\x26client.version\x3d2.20220211.01.00');</script><script nonce="c5Q7qa2EwJz2YMX/FyzFGQ">(function(){window.yterr=window.yterr||true;window.unhandledErrorMessages={};window.unhandledErrorCount=0;
@@ -106,3 +122,62 @@ function W(a){return U("kevlar_watch_split_pane")&&!(.5624>a)}
 var a=window;(function(e){var c=window;c.getInitialCommand=function(){return e};c.loadInitialCommand&&c.loadInitialCommand(c.getInitialCommand())})(a.ytCommand);
 (function(e,c,l,f,g,h,k){var d=window;d.getInitialData=function(){var b=window;b.ytcsi&&b.ytcsi.tick("pr",null,"");b={page:e,endpoint:c,response:l};f&&(b.playerResponse=f);g&&(b.reelWatchSequenceResponse=g);k&&(b.url=k);h&&(b.previousCsn=h);return b};d.loadInitialData&&d.loadInitialData(d.getInitialData())})(a.ytPageType,a.ytCommand,a.ytInitialData,a.ytInitialPlayerResponse,a.ytInitialReelWatchSequenceResponse,a.ytPreviousCsn,a.ytUrl);
 })();</script><script nonce="c5Q7qa2EwJz2YMX/FyzFGQ">ytcfg.set({"CSI_SERVICE_NAME": 'youtube', "TIMING_INFO": {"GetPlayer_rid": '0x9296996ce1cfa506',"yt_ad": '1',"GetWatchNext_rid": '0x9296996ce1cfa506',}})</script><script nonce="c5Q7qa2EwJz2YMX/FyzFGQ">if (window.ytcsi) {window.ytcsi.info('st',  327.0 , '');}</script></body></html>''';
+
+const subtitlesResponse =
+    r'''<?xml version="1.0" encoding="utf-8" ?><transcript><text start="0.08" dur="6.48">September 8th was my last day at Google, 
+after 13 years of working for this company.  </text><text start="6.56" dur="4.56">In this video, I&amp;#39;d like to explain 
+why I left and what&amp;#39;s next for me.</text><text start="11.12" dur="3.28">Wait.
+13 years?</text><text start="14.96" dur="5.68">Yeah, I started in 2008 as employee 
+number four in Google Czech Republic,  </text><text start="21.36" dur="8.48">and this was a long time ago. It was before 
+Android and it was before Chrome, the browser.</text><text start="32.8" dur="3.92">People here in the Czech Republic, where 
+I&amp;#39;m currently making this video from,  </text><text start="37.68" dur="1.36">they didn&amp;#39;t know Google.</text><text start="39.04" dur="6">Maybe like 15 percent of people would know 
+what Google is and those people would think, </text><text start="45.04" dur="1.28">&amp;quot;oh, it&amp;#39;s this obscure,  </text><text start="47.68" dur="4.8">you know, power-user kind of search engine&amp;quot;.
+ 
+So, yeah, it was a different time.</text><text start="52.48" dur="8.56">I tried so many things at Google. I started 
+as a technical guy in sales. I did events. I  </text><text start="61.76" dur="6.32">built internal tools. I was producing 
+apps. I was speaking at conferences.  </text><text start="68.64" dur="4.16">So many conferences!
+(Which was great.)</text><text start="72.8" dur="5.84">I was also mentoring startups, and so many 
+other things that I don&amp;#39;t even remember.</text><text start="78.64" dur="4.96">This will sound incredibly cheesy (as 
+the rest of the video I guess) but  </text><text start="84.96" dur="6.32">I am actually proud of my work at Google.
+From the very beginning, for 13 years,  </text><text start="91.28" dur="6.4">I spent my time at Google teaching 
+people about transformative technologies. </text><text start="98.32" dur="5.04">Things like... I started with Analytics 
+and AdWords and Website Optimizer,  </text><text start="103.36" dur="3.76">and I ended up with Flutter and Dart.
+And all those things,  </text><text start="107.76" dur="6.48">for the people who were listening, they 
+could completely transform their careers.</text><text start="114.24" dur="4.16">And there was hundreds of thousands of people that  </text><text start="118.4" dur="5.12">watched my videos, or attended conferences 
+where I talked, or anything like that. </text><text start="123.52" dur="7.2">So, yeah, I guess I am proud of my work at Google.
+So why do I quit, right? Why quit now?</text><text start="133.36" dur="2.4">Look, I kind of wish I had something  </text><text start="136.4" dur="6.8">cool to say here, like, some great reason or some 
+juicy internal struggle or something like this.</text><text start="143.2" dur="6.24">But the actual reasons are actually boring.
+It boils down to being able to  </text><text start="150.24" dur="3.92">live the life that I want 
+to live, close to my family. </text><text start="154.72" dur="6.24">And because I&amp;#39;m now back in the Czech Republic, 
+where I&amp;#39;m from, where all of my family is  </text><text start="160.96" dur="6.24">basically. I can talk about this for ages but 
+probably not in a public YouTube video. So,  </text><text start="167.2" dur="6.32">if you and I ever have coffee together, 
+I&amp;#39;m happy to discuss. But not here.</text><text start="173.52" dur="4">What I wanted to say, and why basically... 
+the reason why I&amp;#39;m making this video, is: </text><text start="177.52" dur="7.04">I don&amp;#39;t want anyone to think that 
+this is about, &amp;quot;oh, you know, Filip is  </text><text start="184.56" dur="8.24">disappointed with Flutter 2.5&amp;quot;, or whatever.
+No. It&amp;#39;s really just personal choice. It&amp;#39;s  </text><text start="192.8" dur="4.72">not a statement about anything.
+There&amp;#39;s no drama, unfortunately.</text><text start="197.52" dur="8">I still love Flutter. I think it&amp;#39;s a fantastically 
+productive app development environment. I will be  </text><text start="205.52" dur="6.32">using it for the foreseeable future. I love 
+Dart. I think it&amp;#39;s a fantastic, balanced,  </text><text start="212.96" dur="6.56">boring language that just gets out of 
+your way and lets you be productive.</text><text start="219.52" dur="8.8">I could... Also — I can&amp;#39;t believe I almost didn&amp;#39;t 
+mention it — but the community is still... feels  </text><text start="228.88" dur="8.08">like a tightly knit community of people who are 
+humble and nice to each other and welcoming. And  </text><text start="236.96" dur="8.72">that&amp;#39;s such a big part of why I like Flutter 
+and why I want to still be a big part of it.</text><text start="245.68" dur="6.64">Also, 13 years is a lot. It is a lot, 
+even though i wasn&amp;#39;t bored at all  </text><text start="252.32" dur="4.8">during that time. At some point you 
+have to say, like, &amp;quot;hey, it&amp;#39;s enough.&amp;quot;</text><text start="257.12" dur="2.64">Which brings me to what do I do now.</text><text start="262.96" dur="3.36">I hope it&amp;#39;s clear by now that 
+this is not a career move.</text><text start="266.88" dur="3.44">I don&amp;#39;t have any immediate plans as to employment,  </text><text start="270.32" dur="8.24">right. But that doesn&amp;#39;t mean that I will just be 
+sitting idly and doing nothing. I do still want to  </text><text start="279.12" dur="6.16">continue explaining complex things to smart 
+people. Which is kind of what I&amp;#39;ve been doing for  </text><text start="285.28" dur="6.24">the past 15 years. Even before Google i was doing 
+this. And I think there&amp;#39;s definitely things to be  </text><text start="292.08" dur="6.48">taught about performance in Flutter, how to 
+make your apps fast, about design and Flutter...</text><text start="298.56" dur="5.76">I&amp;#39;m going to do that even though I&amp;#39;m not 
+going to be paid by Google to do that anymore.</text><text start="304.32" dur="6.56">I also have my Self-Improving Developer project, 
+which is more tuned towards, like, not just  </text><text start="310.88" dur="6.08">Flutter but in general. If you&amp;#39;re a self-taught 
+developer, things that you might not know because  </text><text start="316.96" dur="5.68">you missed the kind of the computer science 
+education, and that you might want to know. And  </text><text start="323.52" dur="4.72">that&amp;#39;s just like, right now, it&amp;#39;s a book but maybe 
+it&amp;#39;s going to be something else. I don&amp;#39;t know yet.</text><text start="328.24" dur="4.88">And, of course, I have my game / book 
+thing. Knights of San Francisco. And  </text><text start="333.12" dur="5.44">egamebook and stuff like this. Which 
+I released in May, to great acclaim,  </text><text start="338.56" dur="5.12">but I didn&amp;#39;t really do anything about 
+it since then because I was busy with  </text><text start="343.68" dur="4.88">a bunch of other stuff. And i hope that 
+I&amp;#39;ll be able to come back to it and maybe  </text><text start="348.56" dur="4.96">create a sequel and stuff like this. So, 
+stay tuned if you&amp;#39;re into that as well.</text><text start="353.52" dur="8.72">In other words, I&amp;#39;ll be busy, both with family and 
+with work, and I&amp;#39;m fortunate enough to be able to  </text><text start="362.24" dur="5.36">shift the focus a little bit towards family. 
+But I&amp;#39;m not retiring or anything, so...</text><text start="368.16" dur="6.16">I&amp;#39;ll see you around.</text></transcript>''';

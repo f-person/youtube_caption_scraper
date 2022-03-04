@@ -35,4 +35,8 @@ class CaptionTrack {
 
   @override
   int get hashCode => baseUrl.hashCode ^ name.hashCode ^ languageCode.hashCode;
+
+  @override
+  String toString() =>
+      'CaptionTrack(baseUrl: $baseUrl, name: $name, languageCode: $languageCode)';
 }

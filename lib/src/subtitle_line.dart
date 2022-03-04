@@ -22,4 +22,8 @@ class SubtitleLine {
 
   @override
   int get hashCode => start.hashCode ^ duration.hashCode ^ text.hashCode;
+
+  @override
+  String toString() =>
+      'SubtitleLine(start: $start, duration: $duration, text: $text)';
 }
