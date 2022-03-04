@@ -1,5 +1,5 @@
-import 'package:youtube_captions_scraper/src/subtitle_line.dart';
-import 'package:youtube_captions_scraper/src/youtube_caption_scraper_http_client.dart';
+import 'package:youtube_caption_scraper/src/subtitle_line.dart';
+import 'package:youtube_caption_scraper/src/youtube_caption_scraper_http_client.dart';
 
 import 'caption_track.dart';
 import 'youtube_caption_scraper_impl.dart';

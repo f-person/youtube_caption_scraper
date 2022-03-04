@@ -1,5 +1,5 @@
 import 'package:http/testing.dart';
-import 'package:youtube_captions_scraper/src/youtube_caption_scraper_http_client.dart';
+import 'package:youtube_caption_scraper/src/youtube_caption_scraper_http_client.dart';
 
 class MockHttpClient implements YouTubeCaptionScraperHttpClient {
   MockHttpClient(this.clientHandler);

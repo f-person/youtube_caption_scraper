@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
-import 'package:youtube_captions_scraper/src/exceptions.dart';
-import 'package:youtube_captions_scraper/src/youtube_caption_scraper_http_client.dart';
-import 'package:youtube_captions_scraper/src/youtube_caption_scraper_http_client_impl.dart';
+import 'package:youtube_caption_scraper/src/exceptions.dart';
+import 'package:youtube_caption_scraper/src/youtube_caption_scraper_http_client.dart';
+import 'package:youtube_caption_scraper/src/youtube_caption_scraper_http_client_impl.dart';
 
-import 'caption_scraper.dart';
+import 'youtube_caption_scraper.dart';
 import 'caption_track.dart';
 import 'subtitle_line.dart';
 

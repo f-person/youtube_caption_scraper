@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:http/http.dart';
 import 'package:test/test.dart';
 
-import 'package:youtube_captions_scraper/youtube_captions_scraper.dart';
+import 'package:youtube_caption_scraper/youtube_caption_scraper.dart';
 
 import 'mock_http_client.dart';
 import 'test_data.dart';

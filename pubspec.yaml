@@ -1,4 +1,4 @@
-name: youtube_captions_scraper
+name: youtube_caption_scraper
 description: Parse subtitles/captions from YouTube without authorization.
 version: 1.0.0
 environment:

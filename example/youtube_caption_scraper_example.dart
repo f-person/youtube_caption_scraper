@@ -1,4 +1,4 @@
-import 'package:youtube_captions_scraper/youtube_captions_scraper.dart';
+import 'package:youtube_caption_scraper/youtube_caption_scraper.dart';
 
 Future<void> main(List<String> arguments) async {
   if (arguments.length != 1) {

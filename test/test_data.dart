@@ -1,4 +1,4 @@
-import 'package:youtube_captions_scraper/youtube_captions_scraper.dart';
+import 'package:youtube_caption_scraper/youtube_caption_scraper.dart';
 
 const pageUrl = 'https://www.youtube.com/watch?v=4KXePjjdoF0';
 const expectedCaptionTracks = <CaptionTrack>[
