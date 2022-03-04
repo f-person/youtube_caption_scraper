@@ -1,7 +1,6 @@
 name: youtube_captions_scraper
-description: A starting point for Dart libraries or applications.
+description: Parse subtitles/captions from YouTube without authorization.
 version: 1.0.0
-# homepage: https://www.example.com
 environment:
   sdk: ">=2.16.0 <3.0.0"
 
