@@ -1,3 +1,4 @@
+/// Hold information about a single subtitle line.
 class SubtitleLine {
   SubtitleLine({
     required this.start,

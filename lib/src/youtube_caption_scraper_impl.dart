@@ -14,9 +14,10 @@ class YouTubeCaptionScraperImpl implements YouTubeCaptionScraper {
   /// {@template YouTubeCaptionScraperImpl}
   /// The default implementation of [YouTubeCaptionScraper].
   ///
-  /// An optional [http.Client] may be provided. When it's null,
-  /// [http.Client()] will be used. This can be useful when
-  /// using a proxy or mocking the client for testing purposes.
+  /// [httpClient] is used for performing HTTP operations. The default value
+  /// is [YouTubeCaptionScraperHttpClientImpl] which uses [http.Client].
+  /// This can be useful when using a proxy or using a different implementation
+  /// for the HTTP requests (e.g. Dio).
   /// {@endtemplate}
   YouTubeCaptionScraperImpl({
     YouTubeCaptionScraperHttpClient? httpClient,
