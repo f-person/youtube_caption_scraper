@@ -16,4 +16,17 @@ class CaptionTrack {
       languageCode: json['languageCode'],
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is CaptionTrack &&
+        other.baseUrl == baseUrl &&
+        other.name == name &&
+        other.languageCode == languageCode;
+  }
+
+  @override
+  int get hashCode => baseUrl.hashCode ^ name.hashCode ^ languageCode.hashCode;
 }
