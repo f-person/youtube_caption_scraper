@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/f-person/youtube_caption_scraper/branch/master/graph/badge.svg)](https://codecov.io/gh/f-person/youtube_caption_scraper)
+
 A Dart package that parses lyrics from YouTube. No authentication is required.
 
 ## Usage
