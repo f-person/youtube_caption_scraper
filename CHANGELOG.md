@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Use a DTO for parsing caption tracks.
+
 ## 0.1.2
 
 - Add codecov badge.
