@@ -20,9 +20,9 @@ for (final subtitle in subtitles) {
 ```
 
 For more info see
-[example](https://github.com/f-person/youtube_captions_scraper/blob/master/example/youtube_captions_scraper_example.dart)
+[example](https://github.com/f-person/youtube_captions_scraper/blob/master/example/youtube_caption_scraper_example.dart)
 or check the
-[API reference](https://pub.dev/documentation/youtube_captions_scraper/latest/).
+[API reference](https://pub.dev/documentation/youtube_caption_scraper/latest/).
 
 ## Credits
 The package is heavily inspired by
