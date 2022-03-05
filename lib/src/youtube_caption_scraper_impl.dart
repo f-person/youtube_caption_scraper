@@ -6,6 +6,7 @@ import 'package:youtube_caption_scraper/src/exceptions.dart';
 import 'package:youtube_caption_scraper/src/youtube_caption_scraper_http_client.dart';
 import 'package:youtube_caption_scraper/src/youtube_caption_scraper_http_client_impl.dart';
 
+import 'dtos.dart';
 import 'youtube_caption_scraper.dart';
 import 'caption_track.dart';
 import 'subtitle_line.dart';
@@ -54,7 +55,7 @@ class YouTubeCaptionScraperImpl implements YouTubeCaptionScraper {
     final List captionTracks = json['captionTracks'];
     return List.generate(
       captionTracks.length,
-      (index) => CaptionTrack.fromJson(captionTracks[index]),
+      (index) => CaptionTrackDto.fromJson(captionTracks[index]).toEntity(),
     );
   }
 

@@ -15,14 +15,6 @@ class CaptionTrack {
   /// The language code of the caption track.
   final String languageCode;
 
-  factory CaptionTrack.fromJson(Map<String, dynamic> json) {
-    return CaptionTrack(
-      baseUrl: json['baseUrl'],
-      name: json['name'] == null ? '' : json['name']['simpleText'],
-      languageCode: json['languageCode'],
-    );
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
