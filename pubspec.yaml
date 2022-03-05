@@ -1,6 +1,6 @@
 name: youtube_caption_scraper
 description: Parse subtitles/captions from YouTube without authorization.
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/f-person/youtube_captions_scraper
 repository: https://github.com/f-person/youtube_captions_scraper
 

@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Add codecov badge.
+
 ## 0.1.1
 
 - Fix links in README
