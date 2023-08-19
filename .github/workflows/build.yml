@@ -20,5 +20,5 @@ jobs:
         run: |
           dart pub global activate coverage
           dart test --coverage="coverage"
-          format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
+          format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=lib
       - uses: codecov/codecov-action@v2
