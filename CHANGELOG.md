@@ -1,3 +1,8 @@
+## 0.2.0
+
+- Upgrade dependencies
+- Update Dart version constraints
+
 ## 0.1.3
 
 - Use a DTO for parsing caption tracks.

@@ -12,3 +12,5 @@ pubspec.lock
 coverage/
 
 .vscode/
+.DS_Store
+test/.DS_Store
