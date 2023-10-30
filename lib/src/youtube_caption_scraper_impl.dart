@@ -45,12 +45,14 @@ class YouTubeCaptionScraperImpl implements YouTubeCaptionScraper {
   }
 
   List<CaptionTrack> _parseCaptionTracks(String responseBody) {
+    const trailingString = ',"audioTracks"';
     final regex = RegExp(
-      r'({"captionTracks":.*isTranslatable":(true|false)}])',
+      '("captionTracks":.*}]$trailingString)',
     );
     final match = regex.firstMatch(responseBody)!;
-    final matchedData = responseBody.substring(match.start, match.end);
-    final json = jsonDecode('$matchedData}');
+    final matchedData =
+        responseBody.substring(match.start, match.end - trailingString.length);
+    final json = jsonDecode('{$matchedData}');
 
     final List captionTracks = json['captionTracks'];
     return List.generate(
