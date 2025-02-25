@@ -1,3 +1,7 @@
+## 0.2.1
+
+- Fix parsing regular expression (thanks [@hyungtaecf](https://github.com/hyungtaecf)!)
+
 ## 0.2.0
 
 - Upgrade dependencies
